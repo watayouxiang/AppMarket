@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+    <!-- 前景 前景不一定和背景一样大,控件的内容-->
+    <!-- 背景 控件大小 -->
+    <ImageView 
+        android:src="@mipmap/ic_error_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+	<Button 
+	    android:text="重试加载"
+		android:textSize="16sp"
+		android:textColor="#000"
+	    android:padding="10dp"
+	    android:background="@drawable/btn_bg"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"/>
+</LinearLayout>

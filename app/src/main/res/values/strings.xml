@@ -1,0 +1,86 @@
+<resources>
+
+    <string name="app_name">AppMarket</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="category_game">游戏</string>
+    <string name="category_app">应用</string>
+    <string name="recommend_toast">您选择的关键词是：</string>
+    <string name="load_more">加载中...</string>
+    <string name="load_error">加载失败,点击重试</string>
+    <string name="app_detail">应用详情</string>
+    <string name="app_detail_download">下载：</string>
+    <string name="app_detail_version">版本：</string>
+    <string name="app_detail_date">时间：</string>
+    <string name="app_detail_size">大小：</string>
+    <string name="app_detail_introduction">简介</string>
+    <string name="app_detail_author">作者：</string>
+    <string name="app_state_download">下载</string>
+    <string name="app_state_paused">暂停</string>
+    <string name="app_state_error">失败</string>
+    <string name="app_state_waiting">等待</string>
+    <string name="app_state_downloaded">安装</string>
+    <string name="bottom_favorites">收藏</string>
+    <string name="bottom_share">分享</string>
+    <string name="tv_home">首页</string>
+    <string name="tv_setting">设置</string>
+    <string name="tv_theme">主题</string>
+    <string name="tv_scans">安装包管理</string>
+    <string name="tv_feedback">反馈</string>
+    <string name="tv_updates">检查更新</string>
+    <string name="tv_about">关于</string>
+    <string name="tv_exit">退出</string>
+    <string name="tv_user_name">未知</string>
+    <string name="tv_user_email">unknown@gmail.com</string>
+
+    <string-array name="tab_names">
+        <item>首页</item>
+        <item>应用</item>
+        <item>游戏</item>
+        <item>专题</item>
+        <item>推荐</item>
+        <item>分类</item>
+        <item>排行</item>
+    </string-array>
+
+    <string-array name="detail_tab_names">
+        <item>详情</item>
+        <item>评论</item>
+    </string-array>
+
+    <string-array name="category_game">
+        <item>休闲</item>
+        <item>棋牌</item>
+        <item>益智</item>
+        <item>射击</item>
+        <item>体育</item>
+        <item>儿童</item>
+        <item>网游</item>
+        <item>角色</item>
+        <item>策略</item>
+        <item>经营</item>
+        <item>竞速</item>
+    </string-array>
+
+    <string-array name="category_app">
+        <item>浏览器</item>
+        <item>输入法</item>
+        <item>健康</item>
+        <item>效率</item>
+        <item>教育</item>
+        <item>理财</item>
+        <item>阅读</item>
+        <item>个性化</item>
+        <item>购物</item>
+        <item>资讯</item>
+        <item>生活</item>
+        <item>工具</item>
+        <item>出行</item>
+        <item>通讯</item>
+        <item>拍照</item>
+        <item>社交</item>
+        <item>影音</item>
+        <item>安全</item>
+    </string-array>
+
+</resources>
