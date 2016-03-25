@@ -12,6 +12,7 @@ import com.example.admin.appmarket.fragment.SubjectFragment;
 import java.util.HashMap;
 
 /**
+ * Fragment的工厂类,用于缓存以及生成Fragment对象
  * Created by admin on 2016/3/23.
  */
 public class FragmentFactory {

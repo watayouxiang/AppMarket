@@ -23,11 +23,10 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public View onSuccessedView() {
-
         ListView listView = new ListView(UIUtils.getContext());
         mArrayList = new ArrayList<String>();
         for(int i=0;i<100;i++){
-            mArrayList.add("Data "+i);
+            mArrayList.add("Data "+ i);
         }
         listView.setAdapter(new MyAdapter(mArrayList));
 
@@ -51,9 +50,7 @@ public class HomeFragment extends BaseFragment {
             if(convertView == null){
                 convertView = UIUtils.inflate(R.layout.layout_test_item);
                 holder = new ViewHolder();
-
                 holder.tv = (TextView) convertView.findViewById(R.id.tv);
-
                 convertView.setTag(holder);
             }else{
                 holder = (ViewHolder) convertView.getTag();

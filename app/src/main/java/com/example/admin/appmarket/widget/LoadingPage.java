@@ -5,73 +5,78 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.example.admin.appmarket.R;
+import com.example.admin.appmarket.manager.ThreadManager;
 import com.example.admin.appmarket.util.UIUtils;
 
 public abstract class LoadingPage extends FrameLayout {
-    //正在加载view
+
+    /**
+     * 四种界面:
+     * 正在加载 loadingView
+     * 加载数据失败 errorView
+     * 加载成功但是数据为空 emptyView
+     * 加载成功且有数据 successedView
+     */
     private View loadingView;
-    //加载数据失败view
     private View errorView;
-    //加载成功但是数据为空view
     private View emptyView;
-    //加载成功且有数据view
     private View successedView;
 
-    //页面请求网络的初始状态
+    /**
+     * 五种网络状态:
+     * 准备加载 STATE_UNLOAD
+     * 正在加载 STATE_LOADING
+     * 加载错误 STATE_LOAD_ERROR
+     * 加载成功但数据为空 STATE_LOAD_EMPTY
+     * 加载成功且有数据 STATE_LOAD_SUCCESSED
+     */
     private int STATE_UNLOAD = 0;
-    //正在加载
     private int STATE_LOADING = 1;
-    //加载失败
     private int STATE_LOAD_ERROR = 2;
     private int STATE_LOAD_EMPTY = 3;
     private int STATE_LOAD_SUCCESSED = 4;
 
-    //当前(请求网络)状态,决定添加在帧布局中那个view对象去做展示
     private int CURRENTSTATE = STATE_UNLOAD;
-    private LayoutParams layoutParams;
-
-    //初始状态
+    private LayoutParams mLayoutParams;
 
     public LoadingPage(Context context) {
         super(context);
-        layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT,
+        mLayoutParams = new LayoutParams(LayoutParams.MATCH_PARENT,
                 LayoutParams.MATCH_PARENT);
-        //初始化4中类型界面
+        // 初始化4种界面
         initLoadingPage();
     }
 
     private void initLoadingPage() {
-        //1,正在加载
         if (loadingView == null) {
             loadingView = UIUtils.inflate(R.layout.layout_loading);
-            //添加到帧布局内部
-            addView(loadingView, layoutParams);
+            addView(loadingView, mLayoutParams);
         }
-        //2,加载失败
+
         if (errorView == null) {
             errorView = UIUtils.inflate(R.layout.layout_error);
-            addView(errorView, layoutParams);
+            addView(errorView, mLayoutParams);
         }
-        //3,加载为空
+
         if (emptyView == null) {
             emptyView = UIUtils.inflate(R.layout.layout_empty);
-            addView(emptyView, layoutParams);
+            addView(emptyView, mLayoutParams);
         }
-        //根据初始状态去决定哪个界面显示,哪个隐藏
+        // 根据网络状态(CURRENTSTATE)决定显示哪一个界面(view)
         showSafePage();
     }
 
-    //将展示界面的操作,封装到主线程中运行
+    // 在主线程中调用showPage()方法
     private void showSafePage() {
         UIUtils.runInMainThread(new Runnable() {
             @Override
             public void run() {
-                //根据当前状态去展示界面的方法
                 showPage();
             }
         });
     }
 
+    // 根据网络状态(CURRENTSTATE)决定显示哪一个界面(view)
     protected void showPage() {
         if (loadingView != null) {
             loadingView.setVisibility((CURRENTSTATE == STATE_UNLOAD
@@ -85,11 +90,12 @@ public abstract class LoadingPage extends FrameLayout {
         if (emptyView != null) {
             emptyView.setVisibility(CURRENTSTATE == STATE_LOAD_EMPTY ? View.VISIBLE : View.GONE);
         }
-        //添加获取数据成功的界面到帧布局中
+
+        // 加载成功页面的创建
         if (successedView == null && CURRENTSTATE == STATE_LOAD_SUCCESSED) {
-            //构建成功的View对象,因为每一个Fragment中成功获取数据放置的界面效果都不一样,也就是不知道如果去构建这个successedView
+            //加载成功的页面是未知的,所以抽象出来让具体子类去实现
             successedView = onCreateSuccessedView();
-            addView(successedView, layoutParams);
+            addView(successedView, mLayoutParams);
         }
 
         if (successedView != null && CURRENTSTATE == STATE_LOAD_SUCCESSED) {
@@ -97,9 +103,7 @@ public abstract class LoadingPage extends FrameLayout {
         }
     }
 
-    //只有在选中对应的Fragment对象的时候才去调用此请求网络方法
-
-    //编写网络请求过程,然后获取请求结果,调用showPage方法,用于判断界面的显示隐藏
+    // 获取网络请求状态CURRENTSTATE,然后根据网络状态显示不同的view
     public void show() {
         //状态归位
         if (CURRENTSTATE == STATE_LOAD_SUCCESSED
@@ -109,37 +113,29 @@ public abstract class LoadingPage extends FrameLayout {
 
         if (CURRENTSTATE == STATE_UNLOAD) {
             //网络请求过程
-            new Thread() {
+            //网络请求过程必须走子线程
+            Thread thread = new Thread() {
                 public void run() {
-                    //每一个Fragment的请求网络操作,都在此处做触发
-                    //url 参数  请求 对于每一个Fragment而言,都不一致,所以没法在此次做具体实现,所以抽象
-                    //返回请求网络最终得到的状态
-                    final ResultState onLoad = onLoad();
-                    //将获取网络请求状态的过程封装到主线程中,根据此状态决定页面的展示UI操作情况
-                    UIUtils.runInMainThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (onLoad != null) {
-                                CURRENTSTATE = onLoad.getState();
-                            }
-                            //在主线程中,调用根据状态决定显示界面的方法
-                            showPage();
-                        }
-                    });
-                }
+                    //请求网络操作是未知的,所以抽象出来让具体子类去实现(url都不一样),onLoad()方法
+                    //由onLoad()方法返回网络请求状态
+                    //网络请求状态只可能是(成功,为空,失败)其中一种,所以定义枚举ResultState
+                    final ResultState loadState = onLoad();
+                    if (loadState != null) {
+                        CURRENTSTATE = loadState.getState();
+                    }
 
-                ;
-            }.start();
+                    //根据网络请求状态决定显示哪一个界面
+                    //UI操作,必须走主线程
+                    showSafePage();
+                }
+            };
+
+            //用线程池来管理子线程
+            ThreadManager.getThreadProxyPool().execute(thread);
         }
     }
 
-    //请求网络的抽象方法
-    public abstract ResultState onLoad();
-
-    //未知的构建成功界面的过程,方法留给具体的Fragment子类界面去实现
-    public abstract View onCreateSuccessedView();
-
-    //定义一个枚举,去圈定请求网络的返回状态只能是(成功,为空,失败)其中一种
+    //网络请求操作的结果只可能是(成功,为空,失败)其中一种,所以定义枚举ResultState
     public enum ResultState {
         STATE_ERROR(2),
         STATE_EMPTY(3),
@@ -155,4 +151,11 @@ public abstract class LoadingPage extends FrameLayout {
             return state;
         }
     }
+
+    //请求网络操作是未知的,所以抽象出来让具体子类去实现
+    public abstract ResultState onLoad();
+
+    //加载成功的页面是未知的,所以抽象出来让具体子类去实现
+    public abstract View onCreateSuccessedView();
+
 }

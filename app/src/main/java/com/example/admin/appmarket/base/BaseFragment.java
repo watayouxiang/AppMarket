@@ -29,24 +29,13 @@ public abstract class BaseFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    /**
-     * 由BaseFragment去统一管理没一个子类Fragment的界面显示
-     *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
-     */
+    // 由BaseFragment去统一管理每一个子类Fragment的界面显示
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // 1,正在加载view
-        // 2,加载数据失败view
-        // 3,加载成功但是数据为空view
-        // 4,加载成功且有数据view
-        // LoadingPage继承至FrameLayout,默认将多种界面展示情况添加至此帧布局中,
-        // 后期通过具体的网络请求结果对应的状态,去维护那个界面显示以及隐藏
 
+        // LoadingPage继承至FrameLayout,默认将多种界面展示情况添加至此帧布局中,
+        // 后期通过具体的网络请求结果状态,去维护哪个界面显示以及隐藏
         mLoadingPage = new LoadingPage(UIUtils.getContext()) {
             @Override
             public ResultState onLoad() {
@@ -60,29 +49,20 @@ public abstract class BaseFragment extends Fragment {
         };
 
         return mLoadingPage;
-
     }
 
-    /**
-     * 子类的Fragment布局转换成view对象的抽象方法
-     *
-     * @return
-     */
-    public abstract View onSuccessedView();
-
-    /**
-     * 子类Fragment中请求网络的抽象方法
-     *
-     * @return
-     */
-    public abstract LoadingPage.ResultState onLoad();
-
-    /**
-     * 调用LoadingPage中的show方法
-     */
+    // 调用LoadingPage中的show方法
+    // mLoadingPage.show();方法会根据不同网络状态显示不同的界面
     public void baseShow() {
         if (mLoadingPage != null) {
             mLoadingPage.show();
         }
     }
+
+    //加载成功的页面是未知的,所以抽象出来让具体子类去实现
+    public abstract View onSuccessedView();
+
+    //请求网络操作是未知的,所以抽象出来让具体子类去实现
+    public abstract LoadingPage.ResultState onLoad();
+
 }

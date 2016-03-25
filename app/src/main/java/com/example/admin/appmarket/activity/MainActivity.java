@@ -31,12 +31,12 @@ public class MainActivity extends BaseActivity {
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
 
         mViewPager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager()));
+        //指针控件绑定ViewPager
         mTab.setViewPager(mViewPager);
         mTab.setOnPageChangeListener(new MyOnPageChangeListener());
     }
 
     class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
-
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -44,9 +44,9 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public void onPageSelected(int position) {
-            //选中Fragment界面的请求网络操作,Fragment工厂类获取Fragment对象
+            //Fragment工厂类获取Fragment对象
             BaseFragment fragment = FragmentFactory.createFragment(position);
-            //做当前选中界面的请求网络操作
+            //根据不同的网络状态显示不同的界面
             fragment.baseShow();
         }
 
@@ -67,7 +67,7 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // 根据不同的索引生成不同的Fragment,Fragment的工厂类,用于缓存以及生成Fragment对象
+            // 根据不同的索引生成不同的Fragment
             return FragmentFactory.createFragment(position);
         }
 
@@ -76,11 +76,7 @@ public class MainActivity extends BaseActivity {
             return tabNames.length;
         }
 
-        /**
-         * 指定指针说明文字方法
-         * @param position
-         * @return
-         */
+        //指定指针说明文字方法
         @Override
         public CharSequence getPageTitle(int position) {
             return tabNames[position];
