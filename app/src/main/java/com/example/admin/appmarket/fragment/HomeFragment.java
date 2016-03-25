@@ -1,13 +1,13 @@
 package com.example.admin.appmarket.fragment;
 
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.admin.appmarket.R;
-import com.example.admin.appmarket.adapter.MyBaseAdapter;
+import com.example.admin.appmarket.base.MyBaseAdapter;
 import com.example.admin.appmarket.base.BaseFragment;
+import com.example.admin.appmarket.base.BaseHolder;
+import com.example.admin.appmarket.holder.HomeHolder;
 import com.example.admin.appmarket.util.UIUtils;
 import com.example.admin.appmarket.widget.LoadingPage;
 
@@ -45,24 +45,9 @@ public class HomeFragment extends BaseFragment {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder holder = null;
-            if(convertView == null){
-                convertView = UIUtils.inflate(R.layout.layout_test_item);
-                holder = new ViewHolder();
-                holder.tv = (TextView) convertView.findViewById(R.id.tv);
-                convertView.setTag(holder);
-            }else{
-                holder = (ViewHolder) convertView.getTag();
-            }
-
-            holder.tv.setText(mList.get(position));
-            return convertView;
+        public BaseHolder getHolder() {
+            return new HomeHolder();
         }
-    }
-
-    class ViewHolder{
-        TextView tv;
     }
 
 }
