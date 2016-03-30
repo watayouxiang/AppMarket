@@ -47,7 +47,7 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mList.size();
+        return mList.size() + 1;
     }
 
     @Override
@@ -119,7 +119,6 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
                         }
 
                         if (list != null) {
-                            //TODO BUG: 小于20条数据的情况下,显示的数据少一条
                             mList.addAll(list);
                             notifyDataSetChanged();
                         }

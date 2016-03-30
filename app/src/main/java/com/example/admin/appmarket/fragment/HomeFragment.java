@@ -24,8 +24,8 @@ public class HomeFragment extends BaseFragment {
     public View onSuccessedView() {
         ListView listView = new ListView(UIUtils.getContext());
         List<String> list = new ArrayList<String>();
-        for(int i=0;i<20;i++){
-            list.add("Data "+ i);
+        for (int i = 0; i < 20; i++) {
+            list.add("Data " + i);
         }
         listView.setAdapter(new MyAdapter(list));
 
@@ -46,8 +46,8 @@ public class HomeFragment extends BaseFragment {
         @Override
         public List<String> onLoadMore() {
             List<String> list = new ArrayList<String>();
-            for(int i=0;i<20;i++){
-                list.add("More "+ i);
+            for (int i = 0; i < 19; i++) {
+                list.add("More " + i);
             }
             try {
                 Thread.sleep(1000);

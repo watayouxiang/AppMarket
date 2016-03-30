@@ -11,7 +11,7 @@ public abstract class BaseHolder<T> {
     private T mData;
 
     //2, 创建一个holder对象
-    public BaseHolder(){
+    public BaseHolder() {
         //1, 将ListView条目转换成view对象
         mView = initView();
         //4, 给view对象设置Tag
@@ -20,18 +20,27 @@ public abstract class BaseHolder<T> {
     }
 
     //3, 给holder中的字段赋值
-    public void setData(T data){
+    public void setData(T data) {
         this.mData = data;
         //将数据设置到view的控件上
         refreshView();
     }
 
-    public T getData(){
+    public T getData() {
         return mData;
     }
 
-    public View getRootView(){
-        return mView;
+    /**
+     * 注意: 只有initView方法调用完成后才能拿到mView对象
+     *
+     * @return
+     */
+    public View getRootView() {
+        if (mView != null) {
+            return mView;
+        } else {
+            return null;
+        }
     }
 
     //将数据设置到view的控件上

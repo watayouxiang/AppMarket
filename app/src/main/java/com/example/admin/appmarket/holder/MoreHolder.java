@@ -31,15 +31,16 @@ public class MoreHolder extends BaseHolder<Integer> {
 
     @Override
     public View initView() {
-        View view = UIUtils.inflate(R.layout.load_more);
-        //TODO BUG: View view = getRootView();这样写出错,待修复
-        tv_load_more_error = (TextView) view.findViewById(R.id.tv_load_more_error);
-        ll_load_more = (LinearLayout) view.findViewById(R.id.ll_load_more);
-        return view;
+        return UIUtils.inflate(R.layout.load_more);
     }
 
     @Override
     public void refreshView() {
+        //调用getRootView方法前必须调用完成initView的view的返回
+        View view = getRootView();
+        tv_load_more_error = (TextView) view.findViewById(R.id.tv_load_more_error);
+        ll_load_more = (LinearLayout) view.findViewById(R.id.ll_load_more);
+
         Integer data = getData();
         if (data == HAS_MORE) {
             ll_load_more.setVisibility(View.VISIBLE);
