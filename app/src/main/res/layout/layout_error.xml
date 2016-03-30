@@ -13,7 +13,7 @@
 	<Button 
 	    android:text="重试加载"
 		android:textSize="16sp"
-		android:textColor="#000"
+		android:textColor="@color/black"
 	    android:padding="10dp"
 	    android:background="@drawable/btn_bg"
 	    android:layout_width="wrap_content"
