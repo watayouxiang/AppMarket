@@ -20,8 +20,6 @@ public class HomeHolder extends BaseHolder<String> {
 
         TextView tv = (TextView) rootView.findViewById(R.id.tv);
         tv.setText(data);
-
-//        ((TextView)getRootView().findViewById(R.id.tv)).setText(getData());
     }
 
     //将ListView条目转换成view对象
