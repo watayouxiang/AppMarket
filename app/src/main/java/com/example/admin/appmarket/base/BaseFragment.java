@@ -63,6 +63,7 @@ public abstract class BaseFragment extends Fragment {
     public abstract View onSuccessedView();
 
     //请求网络操作是未知的,所以抽象出来让具体子类去实现
+    //因为LoadingPage中的onLoad方法走的是子线程,所以这里走的也是子线程
     public abstract LoadingPage.ResultState onLoad();
 
 }

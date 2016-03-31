@@ -114,7 +114,9 @@ public abstract class LoadingPage extends FrameLayout {
         if (CURRENTSTATE == STATE_UNLOAD) {
             //网络请求过程
             //网络请求过程必须走子线程
-            Thread thread = new Thread() {
+            //用线程池来管理子线程
+            ThreadManager.getThreadProxyPool().execute(new Runnable() {
+                @Override
                 public void run() {
                     //请求网络操作是未知的,所以抽象出来让具体子类去实现(url都不一样),onLoad()方法
                     //由onLoad()方法返回网络请求状态
@@ -128,10 +130,7 @@ public abstract class LoadingPage extends FrameLayout {
                     //UI操作,必须走主线程
                     showSafePage();
                 }
-            };
-
-            //用线程池来管理子线程
-            ThreadManager.getThreadProxyPool().execute(thread);
+            });
         }
     }
 
@@ -153,6 +152,7 @@ public abstract class LoadingPage extends FrameLayout {
     }
 
     //请求网络操作是未知的,所以抽象出来让具体子类去实现
+    //运行在子线程中
     public abstract ResultState onLoad();
 
     //加载成功的页面是未知的,所以抽象出来让具体子类去实现
