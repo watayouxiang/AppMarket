@@ -61,6 +61,7 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
+    // 根据服务器返回的数据判断返回的状态
     public LoadingPage.ResultState check(Object data) {
         if (data != null && data instanceof List) {
             if (((List) data).size() > 0) {

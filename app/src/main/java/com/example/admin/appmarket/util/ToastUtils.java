@@ -48,7 +48,7 @@ public class ToastUtils {
 		
 		TextView contentView = new TextView(context);
 		contentView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-		contentView.setTextColor(Color.parseColor("#ffffff"));
+		contentView.setTextColor(Color.parseColor("#FF4F4F4F"));
 		contentView.setText(text);
 		layoutRoot.addView(contentView, layoutParams);
 
