@@ -30,14 +30,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public View onSuccessedView() {
         ListView listView = new ListView(UIUtils.getContext());
-
-        List<String> list = new ArrayList<String>();
-        for (AppInfo appInfo : mAppInfoList) {
-            list.add(appInfo.getName());
-        }
-
-        listView.setAdapter(new MyAdapter(list));
-
+        listView.setAdapter(new MyAdapter(mAppInfoList));
         return listView;
     }
 
@@ -45,28 +38,20 @@ public class HomeFragment extends BaseFragment {
     public LoadingPage.ResultState onLoad() {
         HomeProtocol homeProtocol = new HomeProtocol();
         mAppInfoList = homeProtocol.getData(0);
-
-        return LoadingPage.ResultState.STATE_SUCCESSED;
+        return check(mAppInfoList);
     }
 
-    class MyAdapter extends MyBaseAdapter<String> {
+    class MyAdapter extends MyBaseAdapter<AppInfo> {
 
-        public MyAdapter(List<String> list) {
+        public MyAdapter(List<AppInfo> list) {
             super(list);
         }
 
         @Override
-        public List<String> onLoadMore() {
-            List<String> list = new ArrayList<String>();
-            for (int i = 0; i < 19; i++) {
-                list.add("More " + i);
-            }
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return list;
+        public List<AppInfo> onLoadMore() {
+            HomeProtocol homeProtocol = new HomeProtocol();
+            List<AppInfo> moreData = homeProtocol.getData(getListSize());
+            return moreData;
         }
 
         @Override

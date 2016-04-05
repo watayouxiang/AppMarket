@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import com.example.admin.appmarket.util.UIUtils;
 import com.example.admin.appmarket.widget.LoadingPage;
 
+import java.util.List;
+
 /**
  * Fragment生命周期:
  * onAttach -> onCreate -> onCreateView -> onActivityCreated(创建)
@@ -56,6 +58,20 @@ public abstract class BaseFragment extends Fragment {
     public void baseShow() {
         if (mLoadingPage != null) {
             mLoadingPage.show();
+        }
+    }
+
+    public LoadingPage.ResultState check(Object data) {
+        if (data != null && data instanceof List) {
+            if (((List) data).size() > 0) {
+                return LoadingPage.ResultState.STATE_SUCCESSED;
+            } else if (((List) data).size() == 0) {
+                return LoadingPage.ResultState.STATE_EMPTY;
+            } else {
+                return LoadingPage.ResultState.STATE_ERROR;
+            }
+        } else {
+            return LoadingPage.ResultState.STATE_ERROR;
         }
     }
 

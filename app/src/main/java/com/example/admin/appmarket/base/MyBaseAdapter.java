@@ -15,8 +15,11 @@ import java.util.List;
  */
 public abstract class MyBaseAdapter<T> extends BaseAdapter {
 
+    /** 存放数据的集合 */
     public List<T> mList;
+    /** 一般条目的Holder */
     private BaseHolder mHolder;
+    /** 更多条目的Holder */
     private MoreHolder mMoreHolder;
     private int LOAD_MORE = 0;
     private int LIST_ITEM = 1;
@@ -126,6 +129,10 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
                 });
             }
         });
+    }
+
+    public int getListSize(){
+        return mList.size();
     }
 
     //加载更多返回的数据未知,抽象给子类实现
