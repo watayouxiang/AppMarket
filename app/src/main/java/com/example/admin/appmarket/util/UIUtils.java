@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.view.View;
 
+import com.example.admin.appmarket.R;
 import com.example.admin.appmarket.application.BaseApplication;
 
 public class UIUtils {
@@ -99,6 +100,32 @@ public class UIUtils {
     public static int px2dip(int px) {
         float d = getResources().getDisplayMetrics().density;
         return (int) (px / d + 0.5);
+    }
+
+    /**
+     * 从dimens.xml中获取单位值
+     * @param dimenId dimenId
+     * @return
+     */
+    public static int getDimenPx(int dimenId){
+        return getResources().getDimensionPixelSize(dimenId);
+    }
+
+    /**
+     * Handler.postDelayed()
+     * @param runnable 任务
+     * @param delayMillis 多久后运行
+     */
+    public static void postDelayed(Runnable runnable, int delayMillis) {
+        getHandler().postDelayed(runnable, delayMillis);
+    }
+
+    /**
+     * 移除传递进来任务
+     * @param runnableTask
+     */
+    public static void removeCallBack(Runnable runnableTask) {
+        getHandler().removeCallbacks(runnableTask);
     }
 
     public static ColorStateList getColorStateList(int mTabTextColorResId) {

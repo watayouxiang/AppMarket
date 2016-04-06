@@ -1,14 +1,9 @@
 package com.example.admin.appmarket.protocol;
 
-import android.text.TextUtils;
-
 import com.example.admin.appmarket.base.BaseProtocol;
 import com.example.admin.appmarket.entity.AppInfo;
-import com.example.admin.appmarket.util.ToastUtils;
-import com.example.admin.appmarket.util.UIUtils;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -19,8 +14,12 @@ import java.util.List;
  */
 public class HomeProtocol extends BaseProtocol<List<AppInfo>> {
 
-    private List<AppInfo> appInfoList = new ArrayList<AppInfo>();
-    private List<String> picList = new ArrayList<String>();
+    private List<AppInfo> mAppInfoList = new ArrayList<AppInfo>();
+    private List<String> mPicList = new ArrayList<String>();
+
+    public List<String> getPicList() {
+        return mPicList;
+    }
 
     @Override
     public String getKey() {
@@ -37,7 +36,7 @@ public class HomeProtocol extends BaseProtocol<List<AppInfo>> {
         try {
             JSONObject jsonObject = new JSONObject(result);
             if (jsonObject.has("list")) {
-                appInfoList.clear();
+                mAppInfoList.clear();
                 JSONArray jsonArray = jsonObject.getJSONArray("list");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject2 = jsonArray.getJSONObject(i);
@@ -50,19 +49,19 @@ public class HomeProtocol extends BaseProtocol<List<AppInfo>> {
                     appInfo.setPackageName(jsonObject2.getString("packageName"));
                     appInfo.setSize(jsonObject2.getInt("size"));
                     appInfo.setStars((float) jsonObject2.getDouble("stars"));
-                    appInfoList.add(appInfo);
+                    mAppInfoList.add(appInfo);
                 }
             }
 
             if (jsonObject.has("picture")) {
-                picList.clear();
+                mPicList.clear();
                 JSONArray jsonArray = jsonObject.getJSONArray("picture");
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    picList.add(jsonArray.getString(i));
+                    mPicList.add(jsonArray.getString(i));
                 }
             }
 
-            return appInfoList;
+            return mAppInfoList;
         } catch (Exception e) {
             e.printStackTrace();
         }
