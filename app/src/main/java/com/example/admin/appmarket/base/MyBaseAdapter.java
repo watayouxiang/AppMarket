@@ -44,7 +44,7 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
         }
     }
 
-    private int getInnerType(int position) {
+    public int getInnerType(int position) {
         return LIST_ITEM;
     }
 
@@ -94,7 +94,7 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
         return mMoreHolder;
     }
 
-    //是否开开启加载更多
+    //是否开开启加载更多, 默认开启
     public boolean hasMore() {
         return true;
     }
