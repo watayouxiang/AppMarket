@@ -26,11 +26,15 @@ public class AppProtocol extends BaseProtocol<List<AppInfo>> {
 
     @Override
     public List<AppInfo> parseJson(String result) {
+        if (result == null) {
+            return null;
+        }
+
         try {
             JSONArray jsonArray = new JSONArray(result);
             List<AppInfo> appInfoList = new ArrayList<AppInfo>();
             appInfoList.clear();
-            for(int i = 0;i<jsonArray.length();i++){
+            for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 AppInfo appInfo = new AppInfo();
                 appInfo.setDes(jsonObject.getString("des"));
@@ -40,7 +44,7 @@ public class AppProtocol extends BaseProtocol<List<AppInfo>> {
                 appInfo.setName(jsonObject.getString("name"));
                 appInfo.setPackageName(jsonObject.getString("packageName"));
                 appInfo.setSize(jsonObject.getInt("size"));
-                appInfo.setStars((float)jsonObject.getDouble("stars"));
+                appInfo.setStars((float) jsonObject.getDouble("stars"));
                 appInfoList.add(appInfo);
             }
             return appInfoList;

@@ -48,11 +48,14 @@ public abstract class BaseProtocol<T> {
         //getKey(): index.jsp
         //getParams(): &name=12312&psd=fdfsa
         HttpHelper.HttpResult httpResult = HttpHelper.get(HttpHelper.URL + getKey() + "?index=" + index + getParams());
-        String result = httpResult.getString();
-        if (!TextUtils.isEmpty(result)) {
-            writeToLocal(result, index);
+        if (httpResult != null) {
+            String result = httpResult.getString();
+            if (!TextUtils.isEmpty(result)) {
+                writeToLocal(result, index);
+                return result;
+            }
         }
-        return result;
+        return null;
     }
 
     /**

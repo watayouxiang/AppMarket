@@ -28,6 +28,10 @@ public class SubjectProtocol extends BaseProtocol<List<SubjectInfo>> {
 
     @Override
     public List<SubjectInfo> parseJson(String result) {
+        if (result == null) {
+            return null;
+        }
+
         try {
             JSONArray jsonArray = new JSONArray(result);
             List<SubjectInfo> subjectList = new ArrayList<SubjectInfo>();

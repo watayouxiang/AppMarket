@@ -33,6 +33,10 @@ public class HomeProtocol extends BaseProtocol<List<AppInfo>> {
 
     @Override
     public List<AppInfo> parseJson(final String result) {
+        if (result == null) {
+            return null;
+        }
+
         try {
             JSONObject jsonObject = new JSONObject(result);
             if (jsonObject.has("list")) {

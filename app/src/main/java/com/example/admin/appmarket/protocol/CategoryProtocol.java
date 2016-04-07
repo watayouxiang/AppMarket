@@ -29,6 +29,10 @@ public class CategoryProtocol extends BaseProtocol<List<CategoryInfo>> {
 
     @Override
     public List<CategoryInfo> parseJson(String result) {
+        if (result == null) {
+            return null;
+        }
+
         try {
             JSONArray jsonArray = new JSONArray(result);
             categoryInfoList.clear();

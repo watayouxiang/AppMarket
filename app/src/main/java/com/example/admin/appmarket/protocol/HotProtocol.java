@@ -27,6 +27,10 @@ public class HotProtocol extends BaseProtocol<List<String>> {
 
     @Override
     public List<String> parseJson(String result) {
+        if (result == null) {
+            return null;
+        }
+
         try {
             JSONArray jsonArray = new JSONArray(result);
             hotList.clear();
