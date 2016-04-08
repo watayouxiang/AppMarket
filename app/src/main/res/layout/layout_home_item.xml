@@ -38,6 +38,7 @@
                     android:textSize="16sp" />
 
                 <RatingBar
+                    android:isIndicator="true"
                     android:id="@+id/app_star_bar"
                     android:layout_width="wrap_content"
                     android:layout_height="14sp"

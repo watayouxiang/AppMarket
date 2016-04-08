@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:padding="3dp">
+
+        <ImageView
+            android:id="@+id/app_safe1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/app_safe2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/app_safe1"
+            android:src="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/app_safe3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/app_safe2"
+            android:src="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/app_safe4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/app_safe3"
+            android:src="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/arrow_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/arrow_down" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_des1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_marginLeft="3dp"
+                android:id="@+id/app_des_url1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:id="@+id/app_des1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="描述描述描述描述描述描述"
+                android:textColor="@color/text_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_des2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_marginLeft="3dp"
+                android:id="@+id/app_des_url2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:id="@+id/app_des2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="描述描述描述描述描述描述"
+                android:textColor="@color/text_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_des3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_marginLeft="3dp"
+                android:id="@+id/app_des_url3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:id="@+id/app_des3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="描述描述描述描述描述描述"
+                android:textColor="@color/text_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_des4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_marginLeft="3dp"
+                android:id="@+id/app_des_url4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:id="@+id/app_des4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="描述描述描述描述描述描述"
+                android:textColor="@color/text_color" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

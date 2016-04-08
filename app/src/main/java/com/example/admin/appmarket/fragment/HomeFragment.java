@@ -1,11 +1,14 @@
 package com.example.admin.appmarket.fragment;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.admin.appmarket.activity.HomeDetailActivity;
 import com.example.admin.appmarket.base.MyBaseAdapter;
 import com.example.admin.appmarket.base.BaseFragment;
 import com.example.admin.appmarket.base.BaseHolder;
@@ -40,7 +43,7 @@ public class HomeFragment extends BaseFragment {
             listView.addHeaderView(headerHolder.getRootView());
         }
 
-        listView.setAdapter(new MyAdapter(mAppInfoList));
+        listView.setAdapter(new MyAdapter(mAppInfoList, listView));
         return listView;
     }
 
@@ -53,8 +56,18 @@ public class HomeFragment extends BaseFragment {
 
     class MyAdapter extends MyBaseAdapter<AppInfo> {
 
-        public MyAdapter(List<AppInfo> list) {
+        public MyAdapter(final List<AppInfo> list, ListView listView) {
             super(list);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    //因为加了个轮播图的头, 所以索引要减1
+                    Intent intent = new Intent(UIUtils.getContext(), HomeDetailActivity.class);
+                    String packageName = list.get(position - 1).getPackageName();
+                    intent.putExtra("packageName",packageName);
+                    startActivity(intent);
+                }
+            });
         }
 
         @Override
