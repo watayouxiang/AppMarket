@@ -20,6 +20,7 @@ import com.example.admin.appmarket.util.LogUtils;
 import com.example.admin.appmarket.util.ToastUtils;
 import com.example.admin.appmarket.util.UIUtils;
 import com.example.admin.appmarket.widget.LoadingPage;
+import com.example.admin.appmarket.widget.MyListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,8 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public View onSuccessedView() {
-        ListView listView = new ListView(UIUtils.getContext());
+//        ListView listView = new ListView(UIUtils.getContext());
+        MyListView listView = new MyListView(UIUtils.getContext());
 
         //首页添加轮播图的逻辑
         if (listView.getHeaderViewsCount() < 1) {
