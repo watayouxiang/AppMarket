@@ -27,9 +27,9 @@
                 android:background="#666666"
                 android:id="@+id/app_pic_hsv"
                 android:layout_width="match_parent"
-                android:layout_height="40dp">
+                android:layout_height="wrap_content">
             </HorizontalScrollView>
-             <FrameLayout 
+             <FrameLayout
                 android:id="@+id/app_des_fl"
                 android:background="@drawable/list_view_item_bg"
                 android:layout_width="match_parent"

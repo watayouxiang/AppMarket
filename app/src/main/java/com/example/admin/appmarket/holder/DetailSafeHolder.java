@@ -23,6 +23,9 @@ import com.lidroid.xutils.BitmapUtils;
 public class DetailSafeHolder extends BaseHolder<AppInfo> {
 
     private boolean isOpen = false;
+    private LayoutParams layoutParams;
+    private LinearLayout ll_root;
+    private ImageView arrow_iv;
 
     @Override
     public View initView() {
@@ -60,11 +63,11 @@ public class DetailSafeHolder extends BaseHolder<AppInfo> {
         textViews[3] = (TextView) rootView.findViewById(R.id.app_des4);
 
         LinearLayout ll_parent = (LinearLayout) rootView.findViewById(R.id.ll_parent);
-        final ImageView arrow_iv = (ImageView) rootView.findViewById(R.id.arrow_iv);
-        final LinearLayout ll_root = (LinearLayout) rootView.findViewById(R.id.ll_root);
+        arrow_iv = (ImageView) rootView.findViewById(R.id.arrow_iv);
+        ll_root = (LinearLayout) rootView.findViewById(R.id.ll_root);
 
         /** 初始化控件数据 */
-        final LayoutParams layoutParams = ll_root.getLayoutParams();
+        layoutParams = ll_root.getLayoutParams();
         layoutParams.height = 0;
         ll_root.setLayoutParams(layoutParams);
 
@@ -93,12 +96,12 @@ public class DetailSafeHolder extends BaseHolder<AppInfo> {
             @Override
             public void onClick(View v) {
                 //收缩扩展相应方法
-                expend(layoutParams, ll_root, arrow_iv);
+                expend();
             }
         });
     }
 
-    private void expend(final LayoutParams layoutParams, final LinearLayout ll_root, final ImageView arrow_iv) {
+    private void expend() {
         int shortHeight = 0;
         ll_root.measure(0, 0);
         int longHeight = ll_root.getMeasuredHeight();

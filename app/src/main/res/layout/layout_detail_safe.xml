@@ -8,7 +8,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
         android:padding="3dp">
 
         <ImageView
@@ -56,6 +55,7 @@
         android:id="@+id/ll_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -66,14 +66,13 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_marginLeft="3dp"
                 android:id="@+id/app_des_url1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
                 android:src="@mipmap/ic_launcher" />
 
             <TextView
-                android:layout_marginLeft="3dp"
                 android:id="@+id/app_des1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -89,14 +88,13 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_marginLeft="3dp"
                 android:id="@+id/app_des_url2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
                 android:src="@mipmap/ic_launcher" />
 
             <TextView
-                android:layout_marginLeft="3dp"
                 android:id="@+id/app_des2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -112,14 +110,13 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_marginLeft="3dp"
                 android:id="@+id/app_des_url3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
                 android:src="@mipmap/ic_launcher" />
 
             <TextView
-                android:layout_marginLeft="3dp"
                 android:id="@+id/app_des3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -131,18 +128,18 @@
             android:id="@+id/ll_des4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_marginLeft="3dp"
                 android:id="@+id/app_des_url4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
                 android:src="@mipmap/ic_launcher" />
 
             <TextView
-                android:layout_marginLeft="3dp"
                 android:id="@+id/app_des4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
