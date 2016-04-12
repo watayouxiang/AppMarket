@@ -12,6 +12,7 @@ import com.example.admin.appmarket.holder.DetailDesHolder;
 import com.example.admin.appmarket.holder.DetailInfoHolder;
 import com.example.admin.appmarket.holder.DetailPicHolder;
 import com.example.admin.appmarket.holder.DetailSafeHolder;
+import com.example.admin.appmarket.holder.DownloadHolder;
 import com.example.admin.appmarket.protocol.DetailProtocol;
 import com.example.admin.appmarket.util.UIUtils;
 import com.example.admin.appmarket.widget.LoadingPage;
@@ -57,6 +58,7 @@ public class HomeDetailActivity extends BaseActivity {
         FrameLayout app_safe_fl = (FrameLayout) view.findViewById(R.id.app_safe_fl);
         HorizontalScrollView app_pic_hsv = (HorizontalScrollView) view.findViewById(R.id.app_pic_hsv);
         FrameLayout app_des_fl = (FrameLayout) view.findViewById(R.id.app_des_fl);
+        FrameLayout detail_download_fl = (FrameLayout) view.findViewById(R.id.detail_download_fl);
 
         //应用详情
         DetailInfoHolder detailInfoHolder = new DetailInfoHolder();
@@ -77,6 +79,13 @@ public class HomeDetailActivity extends BaseActivity {
         DetailDesHolder detailDesHolder = new DetailDesHolder();
         detailDesHolder.setData(mData);
         app_des_fl.addView(detailDesHolder.getRootView());
+
+        //app下载
+        DownloadHolder downloadHolder = new DownloadHolder();
+        downloadHolder.setData(mData);
+        detail_download_fl.addView(downloadHolder.getRootView());
+        //在此次去做观察者对象的注册
+        downloadHolder.registerObserver();
 
         return view;
     }

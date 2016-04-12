@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/fav"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/detail_btn_normal"
+        android:text="收藏"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/share"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_alignParentRight="true"
+        android:layout_margin="2dp"
+        android:background="@drawable/detail_btn_normal"
+        android:text="分享"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/download_bt"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_margin="2dp"
+        android:layout_toLeftOf="@id/share"
+        android:layout_toRightOf="@id/fav"
+        android:background="@drawable/progress_btn_pressed" />
+    <!-- 预设一块帧布局,用于添加自定义的进度条 -->
+    <FrameLayout
+        android:id="@+id/download_fl"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_margin="2dp"
+        android:layout_toLeftOf="@id/share"
+        android:layout_toRightOf="@id/fav" />
+</RelativeLayout>
