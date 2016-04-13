@@ -1,6 +1,8 @@
 package com.example.admin.appmarket.activity;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
@@ -49,6 +51,16 @@ public class HomeDetailActivity extends BaseActivity {
         if (loadingPage != null) {
             loadingPage.show();
         }
+        
+        initActionBar();
+    }
+
+    private void initActionBar() {
+        ActionBar supportActionBar = getSupportActionBar();
+        //设置actionbar左上角按钮可以去点击
+        supportActionBar.setDisplayHomeAsUpEnabled(true);
+        //设置actionbar左上角按钮可以去设置图片
+        supportActionBar.setHomeButtonEnabled(true);
     }
 
     private View onCreateSuccessedView() {
@@ -100,6 +112,14 @@ public class HomeDetailActivity extends BaseActivity {
         } else {
             return LoadingPage.ResultState.STATE_SUCCESSED;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 

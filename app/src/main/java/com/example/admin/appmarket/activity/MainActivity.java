@@ -5,6 +5,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.MenuItem;
 
 import com.example.admin.appmarket.R;
 import com.example.admin.appmarket.base.BaseActivity;
@@ -17,16 +21,41 @@ public class MainActivity extends BaseActivity {
 
     private PagerTab mTab;
     private ViewPager mViewPager;
+    private DrawerLayout mDrawerlayout;
+    private ActionBarDrawerToggle mActionBarDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initView();
+        initPagerTab();
+        initActionBar();
     }
 
-    private void initView() {
+    private void initActionBar() {
+        mDrawerlayout = (DrawerLayout) findViewById(R.id.drawerlayout);
+
+        ActionBar supportActionBar = getSupportActionBar();
+        //设置按钮右侧的文字说明
+        supportActionBar.setTitle(UIUtils.getString(R.string.app_name));
+        //设置actionbar左上角按钮可以去点击
+        supportActionBar.setDisplayHomeAsUpEnabled(true);
+        //设置actionbar左上角按钮可以去设置图片
+        supportActionBar.setHomeButtonEnabled(true);
+
+        mActionBarDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                mDrawerlayout,
+                R.string.drawer_open,
+                R.string.drawer_close
+        );
+
+        //将按钮的点击状态和侧拉栏目的扩展或者收缩做同步
+        mActionBarDrawerToggle.syncState();
+    }
+
+    private void initPagerTab() {
         mTab = (PagerTab) findViewById(R.id.tab);
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
 
@@ -39,7 +68,6 @@ public class MainActivity extends BaseActivity {
     class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
         }
 
         @Override
@@ -52,11 +80,10 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public void onPageScrollStateChanged(int state) {
-
         }
     }
 
-    class MyFragmentPagerAdapter extends FragmentPagerAdapter{
+    class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
         private String[] tabNames;
 
@@ -81,5 +108,10 @@ public class MainActivity extends BaseActivity {
         public CharSequence getPageTitle(int position) {
             return tabNames[position];
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item)|| mActionBarDrawerToggle.onOptionsItemSelected(item);
     }
 }
