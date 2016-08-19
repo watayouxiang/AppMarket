@@ -1,5 +1,13 @@
 # AppMarket
-Android应用市场App框架
+> 运行环境：
+>
+> Android Studio 2.1.3
+>
+> jdk1.8.0_77.jdk
+>
+> Gradle version: 2.14.1
+>
+> Android Plugin Version: 2.1.3
 
 ###HomeFragment | AppFragment | SujectFragment
 ![](http://i.imgur.com/hddyBp0.png) ![](http://i.imgur.com/tOMbTVq.png) ![](http://i.imgur.com/ExOrG4l.png)
