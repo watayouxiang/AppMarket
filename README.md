@@ -1,10 +1,13 @@
 # AppMarket
 **运行环境：**
 
-- Android Studio 2.1.3
-- jdk1.8.0_77.jdk
-- Gradle version: 2.14.1
-- Android Plugin Version: 2.1.3
+- Android Studio 2.3.1
+- jdk1.8.0_131
+- **************
+- gradle:2.3.1
+- compileSdkVersion 25
+- buildToolsVersion "25.0.2"
+- compile 'com.android.support:appcompat-v7:25.3.1'
 
 
 
