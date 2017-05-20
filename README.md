@@ -13,7 +13,3 @@
 **AppMarket预览：**
 
 ![](./appmarket预览.gif)
-
-
-
-> 服务器代码和资料包：链接: https://pan.baidu.com/s/1kVtZkFH 密码: a3tk
